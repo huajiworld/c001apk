@@ -31,16 +31,7 @@ jobs:
           distribution: 'adopt'
           cache: gradle
 
-      - name: Write key
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-        run: |
-          if [ ! -z "${{ secrets.SIGN_KEYSTORE_BASE64 }}" ]; then
-            echo "${{ secrets.SIGN_KEYSTORE_BASE64 }}" | base64 --decode > key.jks
-            echo KEYSTORE_PATH='${{ github.workspace }}/key.jks' >> local.properties
-            echo KEYSTORE_PASSWORD='${{ secrets.KEYSTORE_PASSWORD }}' >> local.properties
-            echo KEY_ALIAS='${{ secrets.KEY_ALIAS }}' >> local.properties
-            echo KEY_PASSWORD='${{ secrets.KEY_PASSWORD }}' >> local.properties
-          fi
+      
 
       - name: Cache Gradle Dependencies
         uses: actions/cache@v4.0.0
