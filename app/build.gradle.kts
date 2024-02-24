@@ -111,9 +111,7 @@ android {
         }
     }
     buildTypes {
-        all {
-            signingConfig = config ?: signingConfigs["debug"]
-        }
+        
         release {
             isMinifyEnabled = true
             isShrinkResources = true
